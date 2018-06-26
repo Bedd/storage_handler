@@ -2,9 +2,9 @@
   "name": "bedd_storage_handler",
   "version": "1.0.0",
   "description": "simple module to store and retrieve data",
-  "main": "dist/storagemanager.cjs.js",
-  "module": "dist/storagemanager.esm.js",
-  "browser": "dist/storagemanager.umd.js",
+  "main": "dist/storagehandler.cjs.js",
+  "module": "dist/storagehandler.esm.js",
+  "browser": "dist/storagehandler.umd.js",
   "scripts": {
     "build": "rollup -c",
     "test": "./node_modules/.bin/mocha test/*.js --require babel-core/register || exit 0"
