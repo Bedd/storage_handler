@@ -1,10 +1,10 @@
 {
   "name": "bedd_storage_handler",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "simple module to store and retrieve data",
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/Bedd/storage_handler"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Bedd/storage_handler"
   },
   "main": "dist/storagehandler.cjs.js",
   "module": "dist/storagehandler.esm.js",
