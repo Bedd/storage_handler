@@ -6,7 +6,6 @@ import type {
 } from '../types/types';
 import CookieStorageHandler from './CookieStorageHandler';
 import LocalStorageManager from './LocalStorageHandler';
-import { cookie, localStorage } from './utils';
 import StorageFactory from './StorageFactory';
 
 const STORAGE_METHODS = {
@@ -49,9 +48,7 @@ class StorageHandler implements IConcreteStorageHandler {
       console.warn(ERRORS.cookies_not_available); //eslint-disable-line no-console
       config.type = STORAGE_METHODS.LS;
 
-    }
-
-    if (config.type === STORAGE_METHODS.LS && !this.localStorageEnabled()) {
+    } else if (config.type === STORAGE_METHODS.LS && !this.localStorageEnabled()) {
       console.warn(ERRORS.localstorage_not_available); //eslint-disable-line no-console
       config.type = STORAGE_METHODS.COOKIE;
     }
@@ -101,7 +98,7 @@ class StorageHandler implements IConcreteStorageHandler {
      * @param {string} key the key under which the value is stored
      */
   removeValue(key : string) : void {
-    this.storageHandler.removeValue(key, cookie);
+    this.storageHandler.removeValue(key);
   }
 
   /**
