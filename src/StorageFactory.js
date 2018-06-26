@@ -1,7 +1,8 @@
-import type { IGenericStorageHandler, IStorageFactory, storageHandlerConfig } from '../types/types';
+// @flow
 import CookieStorageHandler from './CookieStorageHandler';
 import LocalStorageHandler from './LocalStorageHandler';
 import { cookie, localStorage } from './utils';
+import type { IGenericStorageHandler, IStorageFactory, storageHandlerConfig } from '../types/types';
 
 class StorageFactory implements IStorageFactory {
 
