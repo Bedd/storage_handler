@@ -4,8 +4,6 @@ import type {
   IGenericStorageHandler,
   storageHandlerConfig
 } from '../types/types';
-import CookieStorageHandler from './CookieStorageHandler';
-import LocalStorageManager from './LocalStorageHandler';
 import StorageFactory from './StorageFactory';
 
 const STORAGE_METHODS = {
@@ -54,26 +52,6 @@ class StorageHandler implements IConcreteStorageHandler {
     }
 
     this.storageHandler = StorageFactory.getStorage(config);
-  }
-
-
-  tryLocalStorage() {
-    if (!this.localStorageEnabled()) {
-      console.error(ERRORS.localstorage_not_available); // eslint-disable-line no-console
-      return false;
-    }
-    this.storageHandler = new LocalStorageManager(localStorage());
-    return true;
-  }
-
-  tryCookieStore() {
-    if (!this.cookiesEnabled()) {
-      console.error(ERRORS.cookies_not_available); // eslint-disable-line no-console
-      return false;
-    }
-    this.storageHandler = new CookieStorageHandler(cookie());
-    return true;
-
   }
 
   /**
