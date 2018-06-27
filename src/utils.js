@@ -28,13 +28,15 @@ export const localStorage = () : ILocalStorage => {
 
 export const cookieUtils = () : ICookieUtils => {
   const createExpireDate = (days : ?number) => {
-    const now = new Date();
-    now.setDate(now.getDate() + days);
-    now.toUTCString();
-    return now.toUTCString();
+    if (typeof days === 'undefined' || days === null) {
+      days = 30;
+    }
+    const dateNow = new Date();
+    dateNow.setDate(dateNow.getDate() + days);
+    return dateNow.toUTCString();
   };
   return {
-    createExpireDate : (days : ?number = 30) : string => {
+    createExpireDate : (days : ?number) : string => {
       return createExpireDate(days);
     }
   };
@@ -60,16 +62,15 @@ export const cookie = () : ICookie => {
 
   const setCookie = (key: string, data: string, config : TcookieConfig) : void => {
     config = config || {};
-    if (config.expires) {
-      config.expires;
-    }
-    else {
-      config.expires = cookieUtils().createExpireDate(null);
-    }
-    document.cookie = `${key}=${data};`
-      + (config.path ? `;path=${config.path}` : "") +
-      + (config.domain ? `;path=${config.domain}` : "") +
-      + `expires=${config.expires}`;
+
+    config.expires = config.expires ? config.expires : cookieUtils().createExpireDate();
+
+    const cookie = `${key}=${data}`;
+    const expireDate = `;expires={${config.expires}`;
+    const path = config.path ? `;path=${config.path}` : "";
+    const domain = config.domain ? `;path=${config.domain}` : "";
+
+    document.cookie = cookie + domain + path + expireDate;
   };
 
   const removeCookie = (key : string, config? : TcookieConfig) => {
@@ -77,7 +78,7 @@ export const cookie = () : ICookie => {
       config = {};
     }
     if (getCookie(key)) {
-      document.cookie = key + "=" +        
+      document.cookie = key + "=" +
         ((config.path) ? `;path=${config.path}` : "") +
         ((config.domain) ? `;domain=${config.domain}` : "") +
         ";expires=Thu, 01 Jan 1970 00:00:01 GMT";
