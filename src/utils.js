@@ -60,7 +60,7 @@ export const cookie = () : ICookie => {
 
   const setCookie = (key: string, data: string, config : TcookieConfig) : void => {
     config = config || {};
-    if (!config.expires) {
+    if (config.expires) {
       config.expires;
     }
     else {
