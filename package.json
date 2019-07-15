@@ -1,6 +1,6 @@
 {
   "name": "bedd_storage_handler",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "description": "simple module to store and retrieve data",
   "repository": {
     "type": "git",
